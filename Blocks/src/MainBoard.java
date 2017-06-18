@@ -13,9 +13,9 @@ import java.util.Random;
  */
 public class MainBoard {
     
-    static final int MAX_HEIGHT = 30;
-    static final int MAX_WIDTH = 50;
-    static final int MAX_BLOCK = 100;
+    static final int MAX_HEIGHT = 15;
+    static final int MAX_WIDTH = 20;
+    static final int MAX_BLOCK = 30;
     
     int height;
     int width;
@@ -29,9 +29,9 @@ public class MainBoard {
     public void generateMainBoard(){
     Random R = new Random();
     
-    this.height =30;
-    this.width =50;
-    this.numofBlock = 100;
+    this.height =MAX_HEIGHT;
+    this.width =MAX_WIDTH;
+    this.numofBlock = MAX_BLOCK;
     
     generateListBlock();
     

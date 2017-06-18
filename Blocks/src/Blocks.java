@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class Blocks {
     
-    static final int MAX_HEIGHT_BLOCK = 5;
-    static final int MAX_WIDTH_BLOCK = 10;
+    static final int MAX_HEIGHT_BLOCK = 3;
+    static final int MAX_WIDTH_BLOCK = 5;
     
     int width;
     int height;
