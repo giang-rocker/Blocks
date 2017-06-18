@@ -1,3 +1,17 @@
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,13 +22,30 @@
  *
  * @author MyPC
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame  {
 
     /**
      * Creates new form MainFrame
      */
+    
+    MainBoard mainboard ;
+    final int UNIT = 15;
+    final int MARGIN_X = 30;
+    final int MARGIN_Y = 50;
+    
+    int solution[][];
+    
     public MainFrame() {
         initComponents();
+        this.setBackground(Color.black);
+        mainboard = new MainBoard();
+        mainboard.generateMainBoard();
+        
+        
+        
+      this.txt_GameInfo.setText(mainboard.height + " " + mainboard.width+"\n"+mainboard.numofBlock +"" + " blocks");
+        for (int i =0; i< mainboard.numofBlock; i++)
+            this.txt_GameInfo.setText( this.txt_GameInfo.getText() +"\n " + mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height );
     }
 
     /**
@@ -26,25 +57,206 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_GameInfo = new javax.swing.JTextArea();
+        btn_generateNewBoard = new javax.swing.JButton();
+        btn_exportInput = new javax.swing.JButton();
+        btn_loadSolution = new javax.swing.JButton();
+        btn_solve = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_solution = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txt_GameInfo.setColumns(20);
+        txt_GameInfo.setRows(5);
+        jScrollPane1.setViewportView(txt_GameInfo);
+
+        btn_generateNewBoard.setText("New Game");
+        btn_generateNewBoard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_generateNewBoardActionPerformed(evt);
+            }
+        });
+
+        btn_exportInput.setText("Export Test");
+        btn_exportInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exportInputActionPerformed(evt);
+            }
+        });
+
+        btn_loadSolution.setText("Load Solution");
+        btn_loadSolution.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadSolutionActionPerformed(evt);
+            }
+        });
+
+        btn_solve.setText("Solve");
+
+        txt_solution.setColumns(20);
+        txt_solution.setRows(5);
+        jScrollPane2.setViewportView(txt_solution);
+
+        jLabel1.setText("Test");
+
+        jLabel2.setText("Solution");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(btn_generateNewBoard)
+                .addGap(18, 18, 18)
+                .addComponent(btn_exportInput)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_loadSolution)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+                .addComponent(btn_solve)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(291, 291, 291)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_generateNewBoard)
+                            .addComponent(btn_exportInput)
+                            .addComponent(btn_loadSolution)
+                            .addComponent(btn_solve)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_generateNewBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generateNewBoardActionPerformed
+        // TODO add your handling code here:
+        mainboard = new MainBoard();
+        mainboard.generateMainBoard();
+      
+        this.txt_GameInfo.setText(mainboard.numofBlock +"" + " blocks");
+        for (int i =0; i< mainboard.numofBlock; i++)
+            this.txt_GameInfo.setText( this.txt_GameInfo.getText() +"\n " + mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height );
+       
+        isLoadSolution = false;
+        this.getGraphics().clearRect(0, 0, 1080, 600);
+        this.repaint();
+    }//GEN-LAST:event_btn_generateNewBoardActionPerformed
+
+    private void btn_exportInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportInputActionPerformed
+        try {
+            // TODO add your handling code here:
+            PrintWriter out = new PrintWriter("test.txt");
+            
+            out.println(mainboard.height + " " + mainboard.width);
+            out.println(mainboard.numofBlock);
+            for (int i =0; i< mainboard.numofBlock; i++)
+            out.println( mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height );
+            out.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_exportInputActionPerformed
+
+    private void btn_loadSolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadSolutionActionPerformed
+        // TODO add your handling code here:
+    JFileChooser jFileChooser=new JFileChooser();
+    int result= jFileChooser.showOpenDialog(this);
+    if(result==JFileChooser.APPROVE_OPTION)
+    {
+        try {
+        //    JOptionPane.showMessageDialog(this,"hii user clicked open sysytem");
+            File file=jFileChooser.getSelectedFile();
+            Scanner scanner = new Scanner(file);
+           
+            int numOfLine  = scanner.nextInt();
+            numOfRecordInSolution = numOfLine;
+            
+            this.txt_solution.setText ("" + numOfLine);
+                    
+            int [] tall = new int [numOfLine*3];
+           solution = new int[numOfLine][3];
+           for(int i =0; i < numOfLine; i++) {
+               solution[i][0] =  scanner.nextInt();
+               solution[i][1] =  scanner.nextInt();
+               solution[i][2] =  scanner.nextInt();
+               
+               this.txt_solution.setText(  this.txt_solution.getText() + "\n" + solution[i][0] +  " " + solution[i][1] +" " + solution[i][2] );
+           }
+           
+            
+            
+            isLoadSolution = true;
+            this.repaint();
+        } catch (FileNotFoundException ex) {
+           
+        } catch (IOException ex) {
+          
+    }
+    }                 
+    }//GEN-LAST:event_btn_loadSolutionActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    boolean isLoadSolution =false;
+    int numOfRecordInSolution;
+    
+    public void paint(Graphics g){
+        g.setColor(Color.white);
+        g.drawRect(MARGIN_X,MARGIN_Y , mainboard.width*UNIT, mainboard.height*UNIT);
+        
+         g.setColor(Color.gray);
+        // draw line
+        for (int i =1; i < mainboard.height; i++)
+             g.drawLine(MARGIN_X, MARGIN_Y+i*UNIT, MARGIN_X + mainboard.width*UNIT, MARGIN_Y+i*UNIT);
+        
+        for (int i =1; i < mainboard.width; i++)
+             g.drawLine( MARGIN_X+i*UNIT, MARGIN_Y, MARGIN_X+i*UNIT,  MARGIN_Y + mainboard.height*UNIT);
+        
+        // drawSolution
+        if (isLoadSolution){
+            for (int i =0; i < numOfRecordInSolution; i++) {
+                drawBlock(g, solution[i][1], solution[i][2], mainboard.listOfBlock[solution[i][0]].width, mainboard.listOfBlock[solution[i][0]].height);
+            }
+            System.out.println("DRAW SOLUTION");
+        }
+    }
+    
+    public void drawBlock (Graphics g, int x, int y, int w, int h) {
+        
+        g.setColor(Color.orange);
+        g.fillRect(MARGIN_X+x*UNIT,MARGIN_Y+y*UNIT , w*UNIT, h*UNIT);
+        
+    }
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -78,5 +290,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_exportInput;
+    private javax.swing.JButton btn_generateNewBoard;
+    private javax.swing.JButton btn_loadSolution;
+    private javax.swing.JButton btn_solve;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea txt_GameInfo;
+    private javax.swing.JTextArea txt_solution;
     // End of variables declaration//GEN-END:variables
 }
