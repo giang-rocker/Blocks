@@ -36,13 +36,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="btn_generateNewBoard" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_exportInput" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="btn_loadTest" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_loadSolution" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_solve" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="607" max="32767" attributes="0"/>
+              <EmptySpace pref="539" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,6 +65,7 @@
                   <Component id="btn_exportInput" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_loadSolution" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_solve" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_loadTest" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
@@ -113,6 +116,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Solve"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_solveActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -137,6 +143,11 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Solution"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_loadTest">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Load Test"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -15,7 +15,7 @@ public class MainBoard {
     
     static final int MAX_HEIGHT = 15;
     static final int MAX_WIDTH = 20;
-    static final int MAX_BLOCK = 30;
+    static final int MAX_BLOCK = 100;
     
     int height;
     int width;
@@ -31,18 +31,21 @@ public class MainBoard {
     
     this.height =MAX_HEIGHT;
     this.width =MAX_WIDTH;
-    this.numofBlock = MAX_BLOCK;
+    this.numofBlock = 0;
     
     generateListBlock();
     
     }
     
     void generateListBlock() {
-        
-        listOfBlock = new Blocks[this.numofBlock];
-        for (int i =0; i < this.numofBlock; i++)
-            listOfBlock[i] = Blocks.generateNewBlock();
-        
+        int quota = this.height * this.width;
+        listOfBlock = new Blocks[MAX_BLOCK+1];
+        while (quota>0 ) {
+            listOfBlock[this.numofBlock] = Blocks.generateNewBlock();
+            quota-= ( listOfBlock[this.numofBlock].width * listOfBlock[this.numofBlock].height );
+            this.numofBlock++;
+        }
+        this.numofBlock--;
     }
     
 }
