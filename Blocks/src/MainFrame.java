@@ -32,8 +32,8 @@ public class MainFrame extends javax.swing.JFrame {
     final int MARGIN_X = 30;
     final int MARGIN_Y = 50;
 
-    int solution[][];
-    boolean checkBoard[][];
+    boolean boardCheck[][];
+     
 
     public MainFrame() {
         initComponents();
@@ -41,10 +41,13 @@ public class MainFrame extends javax.swing.JFrame {
         mainboard = new MainBoard();
         mainboard.generateMainBoard();
 
-        this.txt_GameInfo.setText(mainboard.height + " " + mainboard.width + "\n" + mainboard.numofBlock + "" + " blocks");
+        this.txt_GameInfo.setText(mainboard.width +" " +mainboard.height +"\n" + mainboard.numofBlock + "" + "");
         for (int i = 1; i <= mainboard.numofBlock; i++) {
-          this.txt_GameInfo.setText(this.txt_GameInfo.getText() + "\n " + i +"th " + mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height);
-          }
+            this.txt_GameInfo.setText(this.txt_GameInfo.getText() + "\n" + mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height);
+        }
+
+        isLoadSolution = false;
+        txt_solution.setText("");
     }
 
     /**
@@ -67,6 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_loadTest = new javax.swing.JButton();
+        txt_result = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,20 +115,19 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setText("Solution");
 
         btn_loadTest.setText("Load Test");
+        btn_loadTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadTestActionPerformed(evt);
+            }
+        });
+
+        txt_result.setText("Result:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(btn_generateNewBoard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,7 +138,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(btn_loadSolution)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_solve)
-                .addContainerGap(539, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_result)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,13 +158,18 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_generateNewBoard)
-                    .addComponent(btn_exportInput)
-                    .addComponent(btn_loadSolution)
-                    .addComponent(btn_solve)
-                    .addComponent(btn_loadTest))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_generateNewBoard)
+                            .addComponent(btn_exportInput)
+                            .addComponent(btn_loadSolution)
+                            .addComponent(btn_solve)
+                            .addComponent(btn_loadTest)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_result)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -166,9 +181,9 @@ public class MainFrame extends javax.swing.JFrame {
         mainboard = new MainBoard();
         mainboard.generateMainBoard();
 
-        this.txt_GameInfo.setText(mainboard.numofBlock + "" + " blocks");
+        this.txt_GameInfo.setText(mainboard.width +" " +mainboard.height +"\n" + mainboard.numofBlock + "" + "");
         for (int i = 1; i <= mainboard.numofBlock; i++) {
-            this.txt_GameInfo.setText(this.txt_GameInfo.getText() + "\n " + i +"th " + mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height);
+            this.txt_GameInfo.setText(this.txt_GameInfo.getText() + "\n" + mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height);
         }
 
         isLoadSolution = false;
@@ -195,6 +210,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btn_loadSolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadSolutionActionPerformed
         // TODO add your handling code here:
+        this.repaint();
         JFileChooser jFileChooser = new JFileChooser();
         int result = jFileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -203,37 +219,27 @@ public class MainFrame extends javax.swing.JFrame {
                 File file = jFileChooser.getSelectedFile();
                 Scanner scanner = new Scanner(file);
 
-                int numOfLine = scanner.nextInt();
-                numOfRecordInSolution = numOfLine;
+                int numOfUsedBlock = scanner.nextInt();
+                numOfRecordInSolution = numOfUsedBlock;
 
-                this.txt_solution.setText("" + numOfLine);
+                this.txt_solution.setText("" + numOfUsedBlock);
 
-                int[] tall = new int[numOfLine * 3];
-                solution = new int[numOfLine][3];
+                 Solution solution = new Solution(this.mainboard);
+                 
+                solution.boardCheck = new boolean[mainboard.width+1][mainboard.height+1];
 
-                checkBoard = new boolean[mainboard.width][mainboard.height];
+                for (int i = 1; i <= solution.numOfBlock; i++) {
+                    solution.listPosition[i][0] = scanner.nextInt();
+                    solution.listPosition[i][1] = scanner.nextInt();
+                   
+                    this.txt_solution.setText(this.txt_solution.getText() + "\n" + solution.listPosition[i][0] + " " + solution.listPosition[i][1]);
 
-                for (int i = 0; i < numOfLine; i++) {
-                    solution[i][0] = scanner.nextInt();
-                    solution[i][1] = scanner.nextInt();
-                    solution[i][2] = scanner.nextInt();
-
-                    this.txt_solution.setText(this.txt_solution.getText() + "\n" + solution[i][0] + " " + solution[i][1] + " " + solution[i][2]
-                   +" " + mainboard.listOfBlock[solution[i][0]].width 
-                    +" " + mainboard.listOfBlock[solution[i][0]].height 
-                    );
-
-                    // mark to checkboard
-                    for (int x = 1; x <= mainboard.listOfBlock[solution[i][0]].width; x++) {
-                        for (int y = 1; y <= mainboard.listOfBlock[solution[i][0]].height; y++) {
-                            checkBoard[x + solution[i][1]][y + solution[i][2]] = true;
-                        }
-                    }
+                   
 
                 }
 
                 isLoadSolution = true;
-                this.repaint();
+                drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);
             } catch (FileNotFoundException ex) {
 
             } catch (IOException ex) {
@@ -244,7 +250,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btn_solveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solveActionPerformed
         // TODO add your handling code here:
-        
         Solution solution = new Solution(mainboard);
         int countBlock = solution.getSolution();
         txt_solution.setText(countBlock + "");
@@ -255,9 +260,46 @@ public class MainFrame extends javax.swing.JFrame {
         
         // draw Solution
        // drawSolution(this.getGraphics(),solution.boardCheck);
+        
         drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);
         
     }//GEN-LAST:event_btn_solveActionPerformed
+
+    private void btn_loadTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadTestActionPerformed
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+        JFileChooser jFileChooser = new JFileChooser();
+        int result = jFileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                //    JOptionPane.showMessageDialog(this,"hii user clicked open sysytem");
+                File file = jFileChooser.getSelectedFile();
+                Scanner scanner = new Scanner(file);
+                this.mainboard = new MainBoard();
+                this.mainboard.width = scanner.nextInt();
+                this.mainboard.height = scanner.nextInt();
+                this.mainboard.numofBlock = scanner.nextInt();
+
+                this.txt_GameInfo.setText("" + mainboard.width + " " + mainboard.height + "\n" + mainboard.numofBlock);
+
+               mainboard.listOfBlock = new Blocks[mainboard.numofBlock+1];
+                 
+
+                for (int i = 1; i <= mainboard.numofBlock; i++) {
+                    mainboard.listOfBlock[i] = new Blocks();
+                    mainboard.listOfBlock[i].width = scanner.nextInt();
+                    mainboard.listOfBlock[i].height = scanner.nextInt();
+                     
+                    this.txt_GameInfo.setText(this.txt_GameInfo.getText() + "\n" + mainboard.listOfBlock[i].width + " " + mainboard.listOfBlock[i].height );
+
+                }
+     } catch (FileNotFoundException ex) {
+
+            } catch (IOException ex) {
+
+            }
+        }
+    }//GEN-LAST:event_btn_loadTestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,6 +308,7 @@ public class MainFrame extends javax.swing.JFrame {
     int numOfRecordInSolution;
 
     public void paint(Graphics g) {
+        nextColor = 0;
         g.setColor(Color.white);
         g.drawRect(MARGIN_X, MARGIN_Y, mainboard.width * UNIT, mainboard.height * UNIT);
 
@@ -276,21 +319,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
 
-        // drawSolution
-        if (isLoadSolution) {
-
-            for (int i = 1; i <= mainboard.width; i++) {
-                for (int j = 1; j<= mainboard.height; j++) {
-                    drawBlock(g, i, j, checkBoard[i][j]);
-                }
-            }
-
-//            for (int i = 0; i < numOfRecordInSolution; i++) {
-//                drawBlock(g, solution[i][1], solution[i][2], mainboard.listOfBlock[solution[i][0]].width, mainboard.listOfBlock[solution[i][0]].height);
-//            }
-//            System.out.println("DRAW SOLUTION");
-
-        }
+        
     }
 
     void drawSolution (Graphics g, int listPosition[][], int numOfBlock) {
@@ -300,7 +329,7 @@ public class MainFrame extends javax.swing.JFrame {
                 drawBlock(g, listPosition[i][0], listPosition[i][1], mainboard.listOfBlock[i].width, mainboard.listOfBlock[i].height  );
                 g.setColor(Color.red);
                 g.setFont(new Font("TimesRoman", Font.BOLD, 15));
-                g.drawString(i+"", MARGIN_X+ (listPosition[i][0]-1)*UNIT,MARGIN_Y+ (listPosition[i][1]-1)*UNIT+15);
+                g.drawString(i+"", MARGIN_X+3+ (listPosition[i][0]-1)*UNIT,MARGIN_Y+3+ (listPosition[i][1]-1)*UNIT+15);
             }
          
     }    
@@ -313,10 +342,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
          
     }  
-    
+    Color listColor[] = {Color.BLUE, Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.YELLOW};
+    int nextColor = 0;
     public void drawBlock(Graphics g, int x, int y, int w, int h) {
 
-        g.setColor(Color.blue);
+        g.setColor(listColor[(nextColor++)%listColor.length]);
+        g.fillRect(MARGIN_X + (x-1) * UNIT, MARGIN_Y + (y-1) * UNIT, w * UNIT, h * UNIT);
+        g.setColor(Color.black);
         g.drawRect(MARGIN_X + (x-1) * UNIT, MARGIN_Y + (y-1) * UNIT, w * UNIT, h * UNIT);
 
     }
@@ -374,6 +406,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txt_GameInfo;
+    private javax.swing.JLabel txt_result;
     private javax.swing.JTextArea txt_solution;
     // End of variables declaration//GEN-END:variables
 }
