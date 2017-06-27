@@ -59,125 +59,123 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txt_GameInfo = new javax.swing.JTextArea();
-        btn_generateNewBoard = new javax.swing.JButton();
-        btn_exportInput = new javax.swing.JButton();
-        btn_loadSolution = new javax.swing.JButton();
-        btn_solve = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_solution = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btn_loadTest = new javax.swing.JButton();
-        txt_result = new javax.swing.JLabel();
+        txt_generateGame1 = new java.awt.Button();
+        button1 = new java.awt.Button();
+        button2 = new java.awt.Button();
+        button3 = new java.awt.Button();
+        button4 = new java.awt.Button();
+        txt_result = new java.awt.Label();
+        txt_solution = new java.awt.TextArea();
+        txt_GameInfo = new java.awt.TextArea();
+        txt_result1 = new java.awt.Label();
+        txt_result2 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        txt_GameInfo.setColumns(20);
-        txt_GameInfo.setRows(5);
-        jScrollPane1.setViewportView(txt_GameInfo);
-
-        btn_generateNewBoard.setText("New Game");
-        btn_generateNewBoard.addActionListener(new java.awt.event.ActionListener() {
+        txt_generateGame1.setLabel("New Game");
+        txt_generateGame1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_generateNewBoardActionPerformed(evt);
+                txt_generateGame1ActionPerformed(evt);
             }
         });
 
-        btn_exportInput.setText("Export Test");
-        btn_exportInput.addActionListener(new java.awt.event.ActionListener() {
+        button1.setLabel("Export Test");
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_exportInputActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
 
-        btn_loadSolution.setText("Load Solution");
-        btn_loadSolution.addActionListener(new java.awt.event.ActionListener() {
+        button2.setLabel("Load Test");
+        button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_loadSolutionActionPerformed(evt);
+                button2ActionPerformed(evt);
             }
         });
 
-        btn_solve.setText("Solve");
-        btn_solve.addActionListener(new java.awt.event.ActionListener() {
+        button3.setLabel("Load Solution");
+        button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_solveActionPerformed(evt);
+                button3ActionPerformed(evt);
             }
         });
 
-        txt_solution.setColumns(20);
-        txt_solution.setRows(5);
-        jScrollPane2.setViewportView(txt_solution);
-
-        jLabel1.setText("Test");
-
-        jLabel2.setText("Solution");
-
-        btn_loadTest.setText("Load Test");
-        btn_loadTest.addActionListener(new java.awt.event.ActionListener() {
+        button4.setLabel("Hint");
+        button4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_loadTestActionPerformed(evt);
+                button4ActionPerformed(evt);
             }
         });
 
-        txt_result.setText("Result:");
+        txt_result.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        txt_result.setForeground(new java.awt.Color(255, 0, 51));
+        txt_result.setText("Result");
+
+        txt_solution.setEditable(false);
+
+        txt_GameInfo.setEditable(false);
+
+        txt_result1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        txt_result1.setForeground(new java.awt.Color(255, 0, 51));
+        txt_result1.setText("Solution");
+
+        txt_result2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        txt_result2.setForeground(new java.awt.Color(255, 0, 51));
+        txt_result2.setText("Test");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(btn_generateNewBoard)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(txt_generateGame1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_exportInput)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_loadTest)
+                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_loadSolution)
+                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_solve)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_result)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13))
+                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(362, 362, 362)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_result2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_result1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_GameInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                    .addComponent(txt_solution, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(jLabel1)
+                .addComponent(txt_result2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_GameInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_result1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(txt_solution, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_generateNewBoard)
-                            .addComponent(btn_exportInput)
-                            .addComponent(btn_loadSolution)
-                            .addComponent(btn_solve)
-                            .addComponent(btn_loadTest)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_result)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_generateGame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_generateNewBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generateNewBoardActionPerformed
+    private void txt_generateGame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_generateGame1ActionPerformed
         // TODO add your handling code here:
+        this.txt_result.setText("Result:");
         mainboard = new MainBoard();
         mainboard.generateMainBoard();
 
@@ -189,14 +187,15 @@ public class MainFrame extends javax.swing.JFrame {
         isLoadSolution = false;
         txt_solution.setText("");
         this.repaint();
-    }//GEN-LAST:event_btn_generateNewBoardActionPerformed
+    }//GEN-LAST:event_txt_generateGame1ActionPerformed
 
-    private void btn_exportInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportInputActionPerformed
-        try {
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+         try {
             // TODO add your handling code here:
             PrintWriter out = new PrintWriter("test.txt");
 
-            out.println(mainboard.height + " " + mainboard.width);
+            out.println(mainboard.width + " " + mainboard.height);
             out.println(mainboard.numofBlock);
             for (int i = 1; i <= mainboard.numofBlock; i++) {
                 out.println(mainboard.listOfBlock[i].width + "  " + mainboard.listOfBlock[i].height);
@@ -206,68 +205,10 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btn_exportInputActionPerformed
+    }//GEN-LAST:event_button1ActionPerformed
 
-    private void btn_loadSolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadSolutionActionPerformed
-        // TODO add your handling code here:
-        this.repaint();
-        JFileChooser jFileChooser = new JFileChooser();
-        int result = jFileChooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try {
-                //    JOptionPane.showMessageDialog(this,"hii user clicked open sysytem");
-                File file = jFileChooser.getSelectedFile();
-                Scanner scanner = new Scanner(file);
-
-                int numOfUsedBlock = scanner.nextInt();
-                numOfRecordInSolution = numOfUsedBlock;
-
-                this.txt_solution.setText("" + numOfUsedBlock);
-
-                 Solution solution = new Solution(this.mainboard);
-                 
-                solution.boardCheck = new boolean[mainboard.width+1][mainboard.height+1];
-
-                for (int i = 1; i <= solution.numOfBlock; i++) {
-                    solution.listPosition[i][0] = scanner.nextInt();
-                    solution.listPosition[i][1] = scanner.nextInt();
-                   
-                    this.txt_solution.setText(this.txt_solution.getText() + "\n" + solution.listPosition[i][0] + " " + solution.listPosition[i][1]);
-
-                   
-
-                }
-
-                isLoadSolution = true;
-                drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);
-            } catch (FileNotFoundException ex) {
-
-            } catch (IOException ex) {
-
-            }
-        }
-    }//GEN-LAST:event_btn_loadSolutionActionPerformed
-
-    private void btn_solveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solveActionPerformed
-        // TODO add your handling code here:
-        Solution solution = new Solution(mainboard);
-        int countBlock = solution.getSolution();
-        txt_solution.setText(countBlock + "");
-        isLoadSolution = true;
-        
-        for (int i=1; i <= solution.numOfBlock; i ++)
-         txt_solution.setText( txt_solution.getText() + "\n" + solution.listPosition[i][0] + " " + solution.listPosition[i][1] );
-        
-        // draw Solution
-       // drawSolution(this.getGraphics(),solution.boardCheck);
-        
-        drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);
-        
-    }//GEN-LAST:event_btn_solveActionPerformed
-
-    private void btn_loadTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadTestActionPerformed
-        // TODO add your handling code here:
-         // TODO add your handling code here:
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        this.txt_result.setText("Result:");
         JFileChooser jFileChooser = new JFileChooser();
         int result = jFileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -299,7 +240,71 @@ public class MainFrame extends javax.swing.JFrame {
 
             }
         }
-    }//GEN-LAST:event_btn_loadTestActionPerformed
+        //    this.repaint();        // TODO add your handling code here:
+    }//GEN-LAST:event_button2ActionPerformed
+
+    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+  this.repaint();
+        JFileChooser jFileChooser = new JFileChooser();
+        int result = jFileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                //    JOptionPane.showMessageDialog(this,"hii user clicked open sysytem");
+                File file = jFileChooser.getSelectedFile();
+                Scanner scanner = new Scanner(file);
+
+                int numOfUsedBlock = scanner.nextInt();
+                numOfRecordInSolution = numOfUsedBlock;
+                
+
+                this.txt_solution.setText("" + numOfUsedBlock);
+
+                 Solution solution = new Solution(this.mainboard);
+                 solution.numOfUseBlock = numOfRecordInSolution;
+                 
+                solution.boardCheck = new boolean[mainboard.width+1][mainboard.height+1];
+
+                for (int i = 1; i <= solution.numOfBlock; i++) {
+                    solution.listPosition[i][0] = scanner.nextInt();
+                    solution.listPosition[i][1] = scanner.nextInt();
+                   
+                    this.txt_solution.setText(this.txt_solution.getText() + "\n" + solution.listPosition[i][0] + " " + solution.listPosition[i][1]);
+
+                   
+
+                }
+                
+                if (!solution.checkCorrectness()){
+                    txt_result.setText("Result: INVALID Answer!");
+                }
+                else {
+                     txt_result.setText("Result: VALID Answer!");
+                isLoadSolution = true;
+                drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);
+                        }
+                
+            } catch (FileNotFoundException ex) {
+
+            } catch (IOException ex) {
+
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_button3ActionPerformed
+
+    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
+ Solution solution = new Solution(mainboard);
+        int countBlock = solution.getSolution();
+        txt_solution.setText(countBlock + "");
+        isLoadSolution = true;
+        
+        for (int i=1; i <= solution.numOfBlock; i ++)
+         txt_solution.setText( txt_solution.getText() + "\n" + solution.listPosition[i][0] + " " + solution.listPosition[i][1] );
+        
+        // draw Solution
+       // drawSolution(this.getGraphics(),solution.boardCheck);
+        
+        drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);        // TODO add your handling code here:
+    }//GEN-LAST:event_button4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,7 +347,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
          
     }  
-    Color listColor[] = {Color.BLUE, Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.YELLOW};
+    Color listColor[] = {Color.BLUE, Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN, Color.ORANGE, Color.YELLOW};
     int nextColor = 0;
     public void drawBlock(Graphics g, int x, int y, int w, int h) {
 
@@ -396,17 +401,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_exportInput;
-    private javax.swing.JButton btn_generateNewBoard;
-    private javax.swing.JButton btn_loadSolution;
-    private javax.swing.JButton btn_loadTest;
-    private javax.swing.JButton btn_solve;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea txt_GameInfo;
-    private javax.swing.JLabel txt_result;
-    private javax.swing.JTextArea txt_solution;
+    private java.awt.Button button1;
+    private java.awt.Button button2;
+    private java.awt.Button button3;
+    private java.awt.Button button4;
+    private java.awt.TextArea txt_GameInfo;
+    private java.awt.Button txt_generateGame1;
+    private java.awt.Label txt_result;
+    private java.awt.Label txt_result1;
+    private java.awt.Label txt_result2;
+    private java.awt.TextArea txt_solution;
     // End of variables declaration//GEN-END:variables
 }

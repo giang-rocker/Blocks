@@ -35,8 +35,8 @@ public class Blocks {
     static public Blocks generateNewBlock(){
         Blocks X = new Blocks();
         Random R = new Random();
-        X.height = 1+ R.nextInt( MAX_HEIGHT_BLOCK);
-        X.width = 1+ R.nextInt(MAX_WIDTH_BLOCK);
+        X.height = 1 + R.nextInt( MAX_HEIGHT_BLOCK);
+        X.width = 1 + R.nextInt(MAX_WIDTH_BLOCK);
         
         X.position = new Position(-1, -1);
         

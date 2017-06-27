@@ -15,7 +15,7 @@ public class MainBoard {
     
     static final int MAX_HEIGHT = 15;
     static final int MAX_WIDTH = 20;
-    static final int MAX_BLOCK = 100;
+    static final int MAX_BLOCK = 1000;
     
     int height;
     int width;
@@ -31,7 +31,7 @@ public class MainBoard {
     
     this.height =MAX_HEIGHT;
     this.width =MAX_WIDTH;
-    this.numofBlock = 0;
+    this.numofBlock = 1;
     
     generateListBlock();
     
