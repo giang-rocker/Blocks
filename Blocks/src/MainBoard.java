@@ -38,7 +38,7 @@ public class MainBoard {
     }
     
     void generateListBlock() {
-        int quota = this.height * this.width;
+        int quota = this.height * this.width*2;
         listOfBlock = new Blocks[MAX_BLOCK+1];
         while (quota>0 ) {
             listOfBlock[this.numofBlock] = Blocks.generateNewBlock();

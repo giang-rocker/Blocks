@@ -278,8 +278,8 @@ public class MainFrame extends javax.swing.JFrame {
                     txt_result.setText("Result: INVALID Answer!");
                 }
                 else {
-                     txt_result.setText("Result: VALID Answer!");
-                isLoadSolution = true;
+                txt_result.setText("Result: VALID Answer! - used: " + solution.usedBlock +" blocks ; used "+  solution.usedUnit+   " units ; filled "+((solution.usedUnit*100) /(1.0*solution.boardHeight*solution.boardWidth)) +" %  ");
+               isLoadSolution = true;
                 drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);
                         }
                 
@@ -292,17 +292,21 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_button3ActionPerformed
 
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
- Solution solution = new Solution(mainboard);
-        int countBlock = solution.getSolution();
-        txt_solution.setText(countBlock + "");
-        isLoadSolution = true;
+        Solution solution = new Solution(this.mainboard);
+        int countBlock = solution.getSolution2();
+        solution.numOfUseBlock = countBlock;
+        solution.boardCheck = new boolean [mainboard.width+2] [mainboard.height+2];
+        if( solution.checkCorrectness())
+         txt_result.setText("Result: VALID Answer! - " + solution.usedBlock +" blocks ; "+  solution.usedUnit+   " units ; "+((solution.usedUnit*100) /(1.0*solution.boardHeight*solution.boardWidth)) +" %  ");
         
+            txt_solution.setText(countBlock + "");
+        isLoadSolution = true;
         for (int i=1; i <= solution.numOfBlock; i ++)
          txt_solution.setText( txt_solution.getText() + "\n" + solution.listPosition[i][0] + " " + solution.listPosition[i][1] );
         
         // draw Solution
        // drawSolution(this.getGraphics(),solution.boardCheck);
-        
+         
         drawSolution(this.getGraphics(), solution.listPosition, solution.numOfBlock);        // TODO add your handling code here:
     }//GEN-LAST:event_button4ActionPerformed
 
@@ -320,7 +324,11 @@ public class MainFrame extends javax.swing.JFrame {
         g.setColor(Color.gray);
         for (int i = 1; i <= mainboard.width; i++) {
             for (int j = 1; j <= mainboard.height; j++) {
-                drawBlock(g, i, j, false);
+               // drawBlock(g, i, j, false
+               g.setColor(Color.white);
+               g.fillRect(MARGIN_X+ (i-1)*UNIT, MARGIN_Y + (j-1)*UNIT, 36,36);
+               g.setColor(Color.gray);
+               g.drawRect(MARGIN_X+ (i-1)*UNIT, MARGIN_Y + (j-1)*UNIT, 36,36);
             }
         }
 
