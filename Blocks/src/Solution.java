@@ -110,7 +110,7 @@ public class Solution {
      int getSolution2(){
         sortBlock();
         boolean isPlaced = false;
-        int countBlock = 1;
+        int countBlock = 0;
         System.out.println(numOfBlock);
         for (int b =1; b <=numOfBlock; b++){
             isPlaced = false;
@@ -131,7 +131,7 @@ public class Solution {
                countBlock++;
             }
               
-        return countBlock-1;
+        return countBlock;
     }
     
     void sortBlock ( ) {
@@ -166,7 +166,7 @@ public class Solution {
     int checkNum = 0;
         usedUnit =0 ;
         
-        for (int i =1; i < this.numOfBlock; i++) {
+        for (int i =1; i <= this.numOfBlock; i++) {
             if ( listPosition[listBlock[i][0]][0]==-1 &&  listPosition[listBlock[i][0]][1]==-1) continue;
             if (!(placeBLock(listBlock[i][1], listBlock[i][2], listPosition[listBlock[i][0]][0], listPosition[listBlock[i][0]][1],boardWidth, boardHeight, boardCheck))){
                     System.out.println("CONFLICT" + listBlock[i][0] +" " + i);
@@ -176,7 +176,7 @@ public class Solution {
             usedUnit+= listBlock[i][1]* listBlock[i][2];
         }
         System.out.println(checkNum +" "+ this.numOfUseBlock);
-    if (checkNum != this.numOfUseBlock) return false;
+        if (checkNum != this.numOfUseBlock) return false;
     usedBlock = checkNum;
     return true;
     }
