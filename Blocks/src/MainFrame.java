@@ -328,23 +328,28 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
         // TODO add your handling code here
-        for (int i =0; i <10; i ++)
-        try {
+         try {
+        PrintWriter out = new PrintWriter("TestBlock.txt");
+        out.println("100");
+        for (int i =0; i <100; i ++){
+       
             // TODO add your handling code here
             MainBoard mb= new MainBoard();
             mb.generateMainBoard();
-            PrintWriter out = new PrintWriter("T"+(i+1)+".txt");
+           
 
             out.println(mb.width + " " + mb.height);
             out.println(mb.numofBlock);
             for (int j = 1; j <= mb.numofBlock; j++) {
                 out.println(mb.listOfBlock[j].width + "  " + mb.listOfBlock[j].height);
             }
-            out.close();
-
+           
+        }
+         out.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
     }//GEN-LAST:event_button5ActionPerformed
 
     /**
